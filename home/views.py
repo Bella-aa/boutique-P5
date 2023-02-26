@@ -1,8 +1,15 @@
 from django.shortcuts import render
+from products.models import Product
 
 # Create your views here.
 
-def index(request):
-    """ A view to return the index page """
+def all_products(request):
+    """ A view to show all products, including sorting and search quiries """
+
+    products = Product.objects.all()
     
-    return render(request, 'home/index.html')
+    context = {
+        'products': products,
+    }
+    
+    return render(request, 'products/products.html', context)
